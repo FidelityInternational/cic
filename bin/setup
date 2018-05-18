@@ -13,12 +13,12 @@ function check_environment() {
     fi
 }
 
-echo -e $(ok "Checking that environment has the required software")
+say $(ok "Checking that environment has the required software")
 result=$(check_environment)
 if [[ -z ${result} ]]; then
     say $(ok "compatible environment detected")
 
-    export PATH=$PATH:${CURRENT_PATH}
+    export PATH=${CURRENT_PATH}:$PATH
     say $(ok "Setup path: ${CURRENT_PATH}")
 
     command_status=$(run docker pull ${COURSE_IMAGE})
@@ -28,6 +28,6 @@ if [[ -z ${result} ]]; then
         say $(ok "Downloaded course image")
     fi
 else
-    echo -e ${result}
+    say ${result}
 fi
 
