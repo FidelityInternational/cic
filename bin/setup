@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${CURRENT_PATH}/command_line_output_functions.sh"
+
+COURSE_IMAGE="lvlup/experiment:fifthtimelucky"
+
+function check_environment() {
+    local requirement="docker"
+    local command_status=$(run which ${requirement})
+
+    if [ ${command_status} -ne 0 ]; then
+        echo $(error "${requirement} not installed")
+    fi
+}
+
+echo -e $(ok "Checking that environment has the required software")
+result=$(check_environment)
+if [[ -z ${result} ]]; then
+    say $(ok "compatible environment detected")
+
+    export PATH=$PATH:${CURRENT_PATH}
+    say $(ok "Setup path: ${CURRENT_PATH}")
+
+    command_status=$(run docker pull ${COURSE_IMAGE})
+    if [ ${command_status} -ne 0 ]; then
+        say $(error "Failed to download course image")
+    else
+        say $(ok "Downloaded course image")
+    fi
+else
+    echo -e ${result}
+fi
+

@@ -6,6 +6,10 @@ Things covered in this course include:
 
 ## Getting Started
 ## What's in the Bootcamp
+### Test Driven Development
+### Types of testing
+### Ansible
+###
 ## Dashboard
 ## Exercises
 ## Workshops
