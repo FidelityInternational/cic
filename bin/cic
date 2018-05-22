@@ -11,9 +11,9 @@ class CIC < Thor
   desc 'connect', 'log in to a container and see what happened'
   option :command, desc: 'command to send to the container', required: false, default: nil
   def connect container_name
-    command = "exec -it #{container_name} "
+    command = "-it #{container_name} "
     command << (options[:command] || "bash -l")
-    system "docker #{command}"
+    docker_exec(command)
   end
 
   desc 'start', 'log in to a container and see what happened'

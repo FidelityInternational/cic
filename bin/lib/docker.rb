@@ -32,6 +32,10 @@ module Docker
     docker("run --privileged --name #{container_name} -v /sys/fs/cgroup:/sys/fs/cgroup:ro #{image_tag} /sbin/init")
   end
 
+  def docker_exec command
+    system "docker exec #{command}"
+  end
+
   def docker command
     command = "docker #{command}"
     run(command).tap do |output|
