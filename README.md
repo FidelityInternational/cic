@@ -1,22 +1,27 @@
 # CI/CD Bootcamp
 ## Introduction
-Welcome to the CI/CD Bootcamp. The Bootcamp is a set of materials designed to teach you how to write tests for and automate the release of the things you build.
+Welcome to the CI/CD/IaC Bootcamp. The Bootcamp is a set of materials designed to teach you how to write tests for and automate the release of the things you build.
 
-Things covered in this course include:
 
-## Getting Started
-### Req's 
- - linux/mac environment
- - docker
- 
-1. Clone the repo: `git clone https://github.com/lvl-up/ci-cd-training.git`
-2. cd in to checkout: `cd ci-cd-training`
-2. run `. ./bin/setup`
 
 ## What's in the Bootcamp
-### Test Driven Development
-### Types of testing
+The course is being actively built out so be sure to pull regularly to get new exercises as they appear.
 ### Ansible
+
+## Getting Started
+### Environment Requirements
+For this material you will need the following: 
+ - a *nix type environment
+ - docker installed
+ - git
+ - Editor of your choice
+ 
+### Setting up 
+1. Clone the repo: `git clone https://github.com/lvl-up/ci-cd-training.git`
+2. cd in to checkout: `cd ci-cd-training`
+3. run `. ./bin/setup`
+
+
 ###
 ## Dashboard
 ## Exercises

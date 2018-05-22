@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 current_dir = Dir.pwd
-system("docker run --network bridge -v #{current_dir}:/mnt/workdir -w /mnt/workdir lvlup/experiment:fifthtimelucky ansible #{ARGV.join(" ")}")
+system("docker run --network bridge -v #{current_dir}:/mnt/workdir -w /mnt/workdir lvlup/ci_course ansible #{ARGV.join(" ")}")
