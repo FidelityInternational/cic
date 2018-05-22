@@ -1,6 +1,6 @@
-FROM ruby:2.4.3
+FROM solita/ubuntu-systemd
 
-RUN apt-get -y -q update && apt-get -y -q install build-essential bash wget unzip python python-dev ca-certificates vim && apt-get clean
+RUN apt-get -y -q update && apt-get -y -q install curl build-essential bash wget unzip python python-dev ca-certificates vim && apt-get clean
 RUN curl https://bootstrap.pypa.io/get-pip.py | python -
 RUN pip install ansible boto awscli
 

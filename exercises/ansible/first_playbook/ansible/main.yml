@@ -1,8 +1,0 @@
----
-- name: Install Vim
-  hosts: all
-
-  tasks:
-
-  - name: Install Vim
-    shell: apt-get install vim

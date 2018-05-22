@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require_relative 'lib/commandline'
+
+class CIC < Thor
+
+  desc 'connect', 'log in to a container and see what happened'
+  option :command, desc: 'command to send to the container', required: false, default: nil
+  def connect container_name
+    command = "docker exec -it #{container_name} "
+    command << (options[:command] || "bash -l")
+    system command
+  end
+
+  desc 'start', 'log in to a container and see what happened'
+  option :image_tag, desc: 'the docker image'
+  def start image_tag
+    container_name=image_tag.gsub(':', '-')
+
+    say ok "Starting container: #{container_name}"
+    system "docker run --privileged --name #{container_name} -v /sys/fs/cgroup:/sys/fs/cgroup:ro #{image_tag} /sbin/init"
+
+
+  rescue SystemExit, Interrupt
+    say "stopping container"
+    container_id = `docker container ps -aq --filter "name=#{container_name}"`.strip.chomp
+    system "docker container rm -f #{container_id} > /dev/null"
+    exit
+  end
+
+  no_commands do
+    include Commandline
+  end
+end
+
+
+CIC.start(ARGV)

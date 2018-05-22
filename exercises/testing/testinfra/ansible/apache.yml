@@ -1,7 +1,19 @@
 ---
 - hosts: apache
-  sudo: yes
+  become: sudo
   tasks:
-    - name: install apache2
+    - name: install httpd
       apt: name=apache2 update_cache=yes state=latest
-      http_proxy: http://ukproxy.bip.uk.fid-intl.com:8000
+#
+    - name: Start service httpd, if not running
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+
+#    - name: blah
+#      shell: systemctl enable httpd.service
+
+#  handlers:
+#    - name: restart httpd
+#      service: name=httpd state=restarted

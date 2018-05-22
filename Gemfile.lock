@@ -15,6 +15,7 @@ GEM
       ms_rest_azure (~> 0.10.0)
     builder (3.2.3)
     coderay (1.1.2)
+    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     declarative (0.0.10)
     declarative-option (0.1.0)
@@ -312,7 +313,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   inspec
+  thor
 
 BUNDLED WITH
    1.16.0.pre.3
