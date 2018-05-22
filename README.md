@@ -5,6 +5,14 @@ Welcome to the CI/CD Bootcamp. The Bootcamp is a set of materials designed to te
 Things covered in this course include:
 
 ## Getting Started
+### Req's 
+ - linux/mac environment
+ - docker
+ 
+1. Clone the repo: `git clone https://github.com/lvl-up/ci-cd-training.git`
+2. cd in to checkout: `cd ci-cd-training`
+2. run `. ./bin/setup`
+
 ## What's in the Bootcamp
 ### Test Driven Development
 ### Types of testing

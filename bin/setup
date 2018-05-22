@@ -2,7 +2,7 @@
 CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${CURRENT_PATH}/command_line_output_functions.sh"
 
-COURSE_IMAGE="lvlup/experiment:fifthtimelucky"
+COURSE_IMAGE="lvlup/ci_course"
 
 function check_environment() {
     local requirement="docker"
