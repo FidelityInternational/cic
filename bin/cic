@@ -19,24 +19,28 @@ class CIC < Thor
   desc 'start', 'log in to a container and see what happened'
   option :image_tag, desc: 'the docker image'
   def start image_tag
-    container_name=image_tag.gsub(':', '-')
+    container_name=normalise(image_tag)
 
     say ok "Starting container: #{container_name}"
     if container_exists?(container_name)
-      start_container(container_name)
+      restart_container(container_name)
     else
       create_container(container_name, image_tag)
     end
 
   rescue SystemExit, Interrupt
+    remove_container(container_name)
     say ok "stopping container and removing container"
-    docker "container rm -f #{container_id(container_name)}"
-    exit
   end
 
   no_commands do
     include Commandline::Output
     include Docker
+
+    private
+    def normalise string
+      string.gsub(%r{[:/]}, '-')
+    end
   end
 end
 

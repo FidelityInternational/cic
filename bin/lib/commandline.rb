@@ -11,6 +11,23 @@ module Commandline
       @exit_code = exit_code
     end
 
+    def error?
+      exit_code != 0
+    end
+
+    def to_s
+      <<OUTPUT
+EXIT CODE: #{exit_code}
+
+STDOUT:
+#{stdout}
+
+STDERR:
+#{stderr}
+OUTPUT
+
+    end
+
     private
     def normalise string
       string.chomp.strip
