@@ -27,8 +27,9 @@ if [[ -z ${result} ]]; then
     export PATH=${CURRENT_PATH}:$PATH
     say "$(ok "Setup path: ${CURRENT_PATH}")"
 
-    command_status=$(run docker pull ${COURSE_IMAGE})
-    if [ ${command_status} -ne 0 ]; then
+    say "Fetching course container from dockerhub"
+    docker pull ${COURSE_IMAGE}
+    if [ $? -ne 0 ]; then
         say "$(error "Failed to download course image")"
     else
         say "$(ok "Downloaded course image")"
