@@ -4,6 +4,10 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a [code of conduct](http://contributor-covenant.org/version/1/4/).
 
+
+## Submission contents
+
+
 ## Pull Request Process
 
 1. Ensure any install artefacts, build dependencies, IDE settings, logs or temporary files are removed before committing.

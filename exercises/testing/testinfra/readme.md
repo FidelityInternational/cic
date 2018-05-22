@@ -10,15 +10,56 @@ There are frameworks that can help do this in lots of languages. For python ther
 Write a test to check that the provided Ansible correctly deploys and configures and instance of Apache.
 
 ## Exercise
-Before we get started, take a look
+Some ansible has been written to create an environment running and Apache webserver. It's works most of the time but as it has been enhanced things that used to work keep braking... 
 
+The right time to have put a test in place would have been right at the beginning before any Ansible was written, however a test is better than no test and late is better then never.
 
-following tutorial for building apache: https://www.digitalocean.com/community/tutorials/how-to-configure-apache-using-ansible-on-ubuntu-14-04
+The requirements for the webserver as as follows:
+* it should be running on port 80
+* Have the rewrite mod loaded 
+* and ... 
 
+*Note:* All instructions given in this exercise assume:
+* you have run . ./bin/setup from the root of the repository
+* that you are executing commands from the same location as this readme is located.
 
-1. ansible apache -c local -m ping
+### Run the ansible
+run `ansible-playbook ansible/apache.yml`
 
+This should give output that ends with something like the following
+```
+PLAY RECAP *********************************************************************
+localhost                  : ok=n    changed=n    unreachable=0    failed=0   
+```
 
-Install apache on to a server.
+The last line of the output will say somethink like:
+```
+[OK] FINISHED - connect with: cic start lvlup/ci_course:xxxxxxxxxxxx
+```
+This line isn't actually printed by Ansible itself, but a handy helper that has given you the instruction you need to connect to start the docker container that was built for you when you made the call to Ansible. Don't worry how this was done, it is not part of the leanring Ansible but simply some magic we've sprinkled to make sure that you almost no environmental/infrastructure setup to do before you get straight to learning the lesson at hand.
 
-inspec exec spec/vim_installed_test.rb -t docker://5af999c37307328b1bae89d81d00725829609d717bbee20444325131e31166d8
+### Start the Apache environment and take a look around.
+run the command that was at the end of the ansible-playbook output.
+`cic start lvlup/ci_course:xxxxxxxxxxxx`
+
+This will print the following:
+```
+Starting container: lvlup-ci_course-xxxxxxxxxxxx
+     
+connect to it with the 'cic connect' command.
+E.g. cic connect lvlup-ci_course-xxxxxxxxxxxx
+For more info run: cic connect help
+```
+
+The container built out by the ansible-playbook is now up and running and ready to be looked at. 
+
+To connect the container press `ctrl+z` and then run `bg` to put the process in the background. Then using the actual container name given from the `cic start` run:
+```
+cic connect lvlup-ci_course-xxxxxxxxxxxx 
+```
+
+You will now be in bash shell on the container itself. From here run: `curl localhost:80` to see that apache is alive and well. `ctrl + d` will disconnect you from the container. 
+
+Run `fg` to bring the active connection to the container back to the foreground and press `ctrl+c` to stop the container.
+
+### Creating a basic test

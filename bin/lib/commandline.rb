@@ -45,7 +45,15 @@ OUTPUT
     end
 
     def ok text
-      "[OK] #{text}".green
+      lines = text.lines
+      prefix = "[OK] "
+      padding = prefix.size
+      message = "#{prefix}#{lines[0].strip}\n"
+      lines[1..-1].each do |line|
+        line = line.chomp.strip
+        message << "#{line.rjust(line.length + padding)}\n"
+      end
+      message.green
     end
 
     def error text

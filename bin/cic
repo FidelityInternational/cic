@@ -8,8 +8,8 @@ require_relative 'lib/docker'
 
 class CIC < Thor
 
-  desc 'connect', 'log in to a container and see what happened'
-  option :command, desc: 'command to send to the container', required: false, default: nil
+  desc 'connect [CONTAINER_NAME]', 'log in to a container and see what happened'
+  option :command, desc: 'send a command to the container instead of logging in', required: false, default: nil
   def connect container_name
     command = "-it #{container_name} "
     command << (options[:command] || "bash -l")
@@ -21,7 +21,15 @@ class CIC < Thor
   def start image_tag
     container_name=normalise(image_tag)
 
-    say ok "Starting container: #{container_name}"
+    message=<<-Message
+      Starting container: #{container_name}
+
+      connect to it with the 'cic connect' command.
+      E.g. cic connect #{container_name}
+      For more info run: cic help connect
+    Message
+
+    say ok message
     if container_exists?(container_name)
       restart_container(container_name)
     else
