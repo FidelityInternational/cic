@@ -12,6 +12,7 @@ The course is being actively built out so be sure to pull regularly to get new e
 ### Environment Requirements
 For this material you will need the following: 
  - a *nix type environment
+ - ruby
  - docker installed
  - git
  - Editor of your choice

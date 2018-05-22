@@ -2,15 +2,13 @@
 
 require_relative 'lib/commandline'
 
-include Commandline
+include Commandline::Output
 
 current_dir = Dir.pwd
 command = "docker run --privileged --network bridge -v #{current_dir}:/mnt/workdir  -v /sys/fs/cgroup:/sys/fs/cgroup:ro -w /mnt/workdir ci_course:blank_box ansible-playbook #{ARGV.join(" ")}"
 
 result = system(command)
 container_id = `docker ps -ql`.chomp.strip
-
-system("docker container rename #{container_id} ci_course-#{container_id}")
 
 tag = "ci_course:#{container_id}"
 system "docker commit #{container_id} #{tag} > /dev/null"

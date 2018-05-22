@@ -4,13 +4,18 @@ source "${CURRENT_PATH}/command_line_output_functions.sh"
 
 COURSE_IMAGE="lvlup/ci_course"
 
-function check_environment() {
-    local requirement="docker"
+function check_installed() {
+    local requirement=$1
     local command_status=$(run which ${requirement})
-
     if [ ${command_status} -ne 0 ]; then
         echo $(error "${requirement} not installed")
     fi
+}
+
+function check_environment() {
+    check_installed "docker"
+    check_installed "ruby"
+    check_installed "bundler"
 }
 
 say $(ok "Checking that environment has the required software")

@@ -1,16 +1,19 @@
 #!/usr/bin/env ruby
 
 require 'thor'
+require 'open3'
 require_relative 'lib/commandline'
+require_relative 'lib/docker'
+
 
 class CIC < Thor
 
   desc 'connect', 'log in to a container and see what happened'
   option :command, desc: 'command to send to the container', required: false, default: nil
   def connect container_name
-    command = "docker exec -it #{container_name} "
+    command = "exec -it #{container_name} "
     command << (options[:command] || "bash -l")
-    system command
+    docker command
   end
 
   desc 'start', 'log in to a container and see what happened'
@@ -19,18 +22,21 @@ class CIC < Thor
     container_name=image_tag.gsub(':', '-')
 
     say ok "Starting container: #{container_name}"
-    system "docker run --privileged --name #{container_name} -v /sys/fs/cgroup:/sys/fs/cgroup:ro #{image_tag} /sbin/init"
-
+    if container_exists?(container_name)
+      start_container(container_name)
+    else
+      create_container(container_name, image_tag)
+    end
 
   rescue SystemExit, Interrupt
-    say "stopping container"
-    container_id = `docker container ps -aq --filter "name=#{container_name}"`.strip.chomp
-    system "docker container rm -f #{container_id} > /dev/null"
+    say ok "stopping container and removing container"
+    docker "container rm -f #{container_id(container_name)}"
     exit
   end
 
   no_commands do
-    include Commandline
+    include Commandline::Output
+    include Docker
   end
 end
 
