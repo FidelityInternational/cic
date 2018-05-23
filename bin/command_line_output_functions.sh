@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 function run() {
-    eval "$@ > /dev/null"
+    eval "$* > /dev/null"
     echo $?
 }
 
@@ -20,12 +20,12 @@ function green(){
 
 function error() {
     local text=$1
-    echo $(red "[ ERROR ] ${text}")
+    red "[ ERROR ] ${text}"
 }
 
 function ok(){
     local text=$1
-    echo $(green "[ OK ] ${text}")
+    green "[ OK ] ${text}"
 }
 
 function say(){

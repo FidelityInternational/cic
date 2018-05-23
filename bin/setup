@@ -1,51 +1,12 @@
 #!/usr/bin/env bash
 CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# shellcheck source=/dev/null
 source "${CURRENT_PATH}/command_line_output_functions.sh"
 
-COURSE_IMAGE="lvlup/ci_course"
+export PATH=${CURRENT_PATH}:${CURRENT_PATH}/contributor:$PATH
+say "$(ok "Setup path: ${CURRENT_PATH}")"
 
-function check_installed() {
-    local requirement=$1
-    local command_status
-    command_status=$(run which ${requirement})
-    if [ ${command_status} -ne 0 ]; then
-        echo "$(error "${requirement} not installed")"
-    fi
-}
+bash "${CURRENT_PATH}/configure_environment"
 
-function check_environment() {
-    check_installed "docker"
-    check_installed "ruby"
-    check_installed "bundler"
-}
 
-say "$(ok "Checking that environment has the required software")"
-result=$(check_environment)
-if [[ -z ${result} ]]; then
-    say "$(ok "compatible environment detected")"
-
-    export PATH=${CURRENT_PATH}:$PATH
-    say "$(ok "Setup path: ${CURRENT_PATH}")"
-
-    say "Fetching Ruby gems"
-    pushd "${CURRENT_PATH}/.."
-    bundle
-    if [ $? -ne 0 ]; then
-        say "$(error "Failed to download Ruby gems")"
-        return
-    else
-        say "$(ok "Ruby gems installed")"
-    fi
-    popd
-
-    say "Fetching course container from dockerhub"
-    docker pull ${COURSE_IMAGE}
-    if [ $? -ne 0 ]; then
-        say "$(error "Failed to download course image")"
-        return
-    else
-        say "$(ok "Downloaded course image")"
-    fi
-else
-    say ${result}
-fi
