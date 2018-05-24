@@ -2,8 +2,8 @@
 
 require 'thor'
 require 'open3'
-require_relative 'lib/commandline'
-require_relative 'lib/docker'
+require_relative 'support/ruby/lib/commandline'
+require_relative 'support/ruby/lib/docker'
 
 
 class CIC < Thor

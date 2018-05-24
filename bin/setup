@@ -2,9 +2,9 @@
 CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # shellcheck source=/dev/null
-source "${CURRENT_PATH}/command_line_output_functions.sh"
+source "${CURRENT_PATH}/support/sh/functions/output.sh"
 
-export PATH=${CURRENT_PATH}:${CURRENT_PATH}/contributor:$PATH
+export PATH=${CURRENT_PATH}:$PATH
 say "$(ok "Setup path: ${CURRENT_PATH}")"
 
 bash "${CURRENT_PATH}/configure_environment"

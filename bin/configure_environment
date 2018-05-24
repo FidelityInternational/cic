@@ -3,7 +3,7 @@
 COURSE_IMAGE="lvlup/ci_course"
 CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # shellcheck source=/dev/null
-source "${CURRENT_PATH}/command_line_output_functions.sh"
+source "${CURRENT_PATH}/support/sh/functions/output.sh"
 
 function check_installed() {
     local requirement=$1

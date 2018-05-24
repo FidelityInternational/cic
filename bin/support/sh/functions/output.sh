@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-function run() {
-    eval "$* > /dev/null"
-    echo $?
-}
-
 function red(){
     local red='\033[0;31m'
     local no_colour='\033[0m'
