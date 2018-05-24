@@ -20,7 +20,7 @@ class CIC < Thor
   def start(image_tag)
     container_name = normalise(image_tag)
 
-    say ok help_start_msg(container_name)
+    say ok start_help_msg(container_name)
     if container_exists?(container_name)
       restart_container(container_name)
     else
@@ -37,7 +37,7 @@ class CIC < Thor
 
     private
 
-    def help_start_msg(container_name)
+    def start_help_msg(container_name)
       <<-MESSAGE
       Starting container: #{container_name}
 
