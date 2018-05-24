@@ -1,4 +1,6 @@
-$LOAD_PATH.unshift("#{}")
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift('')
 
 task :setup do
   # export PATH=${CURRENT_PATH}:$PATH

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'inspec'
-gem 'thor'
 gem 'colorize'
+gem 'inspec'
+gem 'rubocop'
+gem 'thor'

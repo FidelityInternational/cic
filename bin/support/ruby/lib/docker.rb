@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'commandline'
 module Docker
   class Error < StandardError
     include Commandline::Output
-    def initialize msg
+    def initialize(msg)
       super error(msg)
     end
   end
@@ -14,8 +16,8 @@ module Docker
     false
   end
 
-  def container_id container_name
-    id = docker(%Q{container ps -aq --filter "name=#{container_name}"}).stdout
+  def container_id(container_name)
+    id = docker(%(container ps -aq --filter "name=#{container_name}")).stdout
     id.empty? ? raise(Error, "container with name #{container_name} does not exist") : id
   end
 
@@ -32,11 +34,11 @@ module Docker
     docker("run --privileged --name #{container_name} -v /sys/fs/cgroup:/sys/fs/cgroup:ro #{image_tag} /sbin/init")
   end
 
-  def docker_exec command
+  def docker_exec(command)
     system "docker exec #{command}"
   end
 
-  def docker command
+  def docker(command)
     command = "docker #{command}"
     run(command).tap do |output|
       raise(Error, "Failed to run: #{command}\n#{output}") if output.error?

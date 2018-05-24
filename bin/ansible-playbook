@@ -1,13 +1,25 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require_relative 'support/ruby/lib/commandline'
 
+# rubocop:disable Style/MixinUsage
 include Commandline::Output
+# rubocop:enable Style/MixinUsage
 
-course_image = "lvlup/ci_course"
+course_image = 'lvlup/ci_course'
 current_dir = Dir.pwd
 
-command = "docker run --privileged --network bridge -v #{current_dir}:/mnt/workdir  -v /sys/fs/cgroup:/sys/fs/cgroup:ro -w /mnt/workdir #{course_image} ansible-playbook #{ARGV.join(" ")}"
+command = <<~COMMAND
+  docker run \
+  --privileged\
+  --network bridge \
+  -v #{current_dir}:/mnt/workdir \
+  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  -w /mnt/workdir \
+  #{course_image} \
+  ansible-playbook #{ARGV.join(' ')}
+COMMAND
 
 result = system(command)
 container_id = `docker ps -ql`.chomp.strip

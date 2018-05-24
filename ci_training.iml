@@ -6,6 +6,7 @@
     <orderEntry type="jdk" jdkName="RVM: ruby-2.4.3 [ci-cd-training]" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.5.2, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v2.11.52, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="aws-sdk-core (v2.11.52, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="aws-sdk-resources (v2.11.52, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
@@ -89,9 +90,12 @@
     <orderEntry type="library" scope="PROVIDED" name="nori (v2.6.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="os (v0.9.6, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.12.1, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parser (v2.5.1.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parslet (v1.8.2, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="powerpack (v0.1.1, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry (v0.11.3, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v3.0.2, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.0.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="representable (v3.0.4, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="retriable (v3.1.1, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rly (v0.2.3, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
@@ -101,6 +105,8 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-its (v1.2.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.7.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.7.1, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v0.56.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.9.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyntlm (v0.6.2, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.2.1, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="semverse (v2.0.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
@@ -114,6 +120,7 @@
     <orderEntry type="library" scope="PROVIDED" name="uber (v0.1.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf (v0.1.4, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf_ext (v0.0.7.5, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v1.3.2, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="winrm (v2.2.3, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="winrm-fs (v1.2.0, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zonefile (v1.06, RVM: ruby-2.4.3 [ci-cd-training]) [gem]" level="application" />

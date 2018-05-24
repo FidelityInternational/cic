@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'colorize'
 require 'open3'
-
 
 module Commandline
   class Return
@@ -16,20 +17,20 @@ module Commandline
     end
 
     def to_s
-      <<OUTPUT
-EXIT CODE: #{exit_code}
+      <<~OUTPUT
+        EXIT CODE: #{exit_code}
 
-STDOUT:
-#{stdout}
+        STDOUT:
+        #{stdout}
 
-STDERR:
-#{stderr}
+        STDERR:
+        #{stderr}
 OUTPUT
-
     end
 
     private
-    def normalise string
+
+    def normalise(string)
       string.chomp.strip
     end
   end
@@ -40,13 +41,13 @@ OUTPUT
   end
 
   module Output
-    def say msg
+    def say(msg)
       puts msg
     end
 
-    def ok text
+    def ok(text)
       lines = text.lines
-      prefix = "[OK] "
+      prefix = '[OK] '
       padding = prefix.size
       message = "#{prefix}#{lines[0].strip}\n"
       lines[1..-1].each do |line|
@@ -56,16 +57,14 @@ OUTPUT
       message.green
     end
 
-    def error text
+    def error(text)
       "[ERROR] #{text}".red
     end
 
     private
+
     def no_colour
       '\033[0m'
     end
   end
-
-
-
 end
