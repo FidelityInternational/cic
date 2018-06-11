@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative 'support/ruby/lib/commandline'
+require_relative 'support/ruby/lib/utils/commandline'
 
 # rubocop:disable Style/MixinUsage
 include Commandline::Output
@@ -32,3 +32,5 @@ message = if result
             error "FAILED - connect with: cic start #{tag}"
           end
 say message
+
+exit 1 unless result
