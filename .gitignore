@@ -1,5 +1,6 @@
 .idea
 *.iml
 **/.pytest_cache
-**/apache.retry
+*.retry
+*.log
 .vagrant/
