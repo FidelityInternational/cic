@@ -38,7 +38,10 @@ module Docker
   end
 
   def create_container(container_name, image_tag)
-    docker("run -d --privileged --name #{container_name} -v /sys/fs/cgroup:/sys/fs/cgroup:ro #{image_tag} /sbin/init")
+    network = 'cic'
+    volume_mapping = '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    cmd = '/sbin/init'
+    docker("run --network #{network} -d --privileged --name #{container_name} -v #{volume_mapping} #{image_tag} #{cmd}")
   end
 
   def docker_exec(command)

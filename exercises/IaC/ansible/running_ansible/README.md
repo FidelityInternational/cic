@@ -19,7 +19,6 @@ Ansible has lots of features that you will learn about in future exercises. The 
 ## Exercise
 **Note:** Before going any further do the following:
 - `cd YOUR_CLONE_OF_THIS REPO`
-- `. ./bin/setup`
 - `cd ./exercises/IaC/ansible/running_ansible`
 
 ### ansible-playbook
@@ -150,29 +149,29 @@ Having tests that can be run on demand provides great power. These tests can be 
 This exercise contains a test called ./tests/apache_ansible_test.py written in python using the pytest and testinfra APIs. This contains the following
 
 ```python
-import pytest, testinfra, os
+import pytest, testinfra, os, paramiko
 
-def test_apache_installed_enabled_running():
-    host=testinfra.get_host("docker://" + os.environ['CONTAINER_ID'])
+def test_apache_installed_enabled_running(cmdopt):
+    host=testinfra.get_host("paramiko://root@" + cmdopt, ssh_config="/root/.ssh/config")
     assert host.package("apache2").is_installed
     assert host.service("apache2").is_enabled
     assert host.service("apache2").is_running
     assert host.socket("tcp://0.0.0.0:80").is_listening
 ```
 
-To run this script, execute the following command: `CONTAINER_ID=lvlup-ci_course-xxxxxxxxxxxxxxxx pytest`
+To run this script, execute the following command: `pytest --ansible-host lvlup-ci_course-xxxxxxxxxxxxxxxx`
 
 This should output the following:
 ```
 ============================= test session starts ==============================
-platform linux2 -- Python 2.7.12, pytest-3.6.1, py-1.5.3, pluggy-0.6.0
-rootdir: /vagrant/exercises/IaC/ansible/running_ansible, inifile:
+platform linux2 -- Python 2.7.12, pytest-3.6.2, py-1.5.3, pluggy-0.6.0
+rootdir: /mnt/workdir, inifile:
 plugins: testinfra-1.14.0
 collected 1 item
 
 tests/apache_ansible_test.py .                                           [100%]
 
-=========================== 1 passed in 1.44 seconds ===========================
+=========================== 1 passed in 1.08 seconds ===========================
 ```
 
 In just a second or so the test has validated that:

@@ -12,7 +12,7 @@ current_dir = Dir.pwd
 command = <<~COMMAND
   docker run \
   --privileged\
-  --network bridge \
+  --network cic \
   -v #{current_dir}:/mnt/workdir \
   -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
   -w /mnt/workdir \

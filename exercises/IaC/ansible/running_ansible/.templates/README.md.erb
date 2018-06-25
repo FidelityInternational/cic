@@ -19,7 +19,6 @@ Ansible has lots of features that you will learn about in future exercises. The 
 ## Exercise
 **Note:** Before going any further do the following:
 - `cd YOUR_CLONE_OF_THIS REPO`
-- `<%= command('. ./bin/setup')%>`
 - `<%= cd('./exercises/IaC/ansible/running_ansible')%>`
 
 ### ansible-playbook
@@ -111,7 +110,7 @@ This exercise contains a test called <%= path("./tests/apache_ansible_test.py") 
 <%= command_output('cat ./tests/apache_ansible_test.py') %>
 ```
 
-To run this script, execute the following command: `<%= command("CONTAINER_ID=#{container_id} pytest") %>`
+To run this script, execute the following command: `<%= command("pytest --ansible-host #{container_id}") %>`
 
 This should output the following:
 ```
