@@ -23,13 +23,13 @@ Exercises can consist of the following components:
 ### Getting started
 On the command line navigate to the place where the you intend to create your new exercise. For example the, if you want to create a new exercise for ansible. Navigate to correct location within the CIC exercise directory structure and run `exercise create exercise_name`. This command will create a skeleton exercise directory with the all the files that you are likely to need.
 ```
-Creating exercise: exercise_name
-created 5 files
-Created: exercise_name/docker-compose.yml
+Creating new exercise: exercise_name
 Created: exercise_name/tests
 Created: exercise_name/.templates
 Created: exercise_name/.templates/README.md.erb
 Created: exercise_name/resources
+Created: exercise_name/.cic
+Created: exercise_name/.cic/docker-compose.yml
 [OK] Complete
 
 ```
@@ -91,5 +91,6 @@ Some exercises will require some kind of test infrastructure to for participants
 
 
 
+  
 
 Revision: f32616a772305aa2d9c8759c2927018e3c36c40e718e4fc1c9ada2024bb72ad6
