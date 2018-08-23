@@ -34,7 +34,7 @@ For this material you will need the following:
 2. Fork this repo
 3. Clone your fork: `git clone https://github.com/<youruser>/<fork>.git cic`
 4. cd in to your checkout: `cd cic`
-5. setup the courseware: `./bin/setup`
+5. setup the courseware: `. bin/setup`
 
 ### Starting a learning track
 To see the Learning tracks that CIC contains run: `cic track list`
