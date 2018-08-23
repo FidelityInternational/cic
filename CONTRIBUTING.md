@@ -1,6 +1,15 @@
 
 
 # Contributors Guide
+- [Raising Issues](#raising-an-issue)
+- [Submitting an exercise](#submitting-an-exercise)
+  - [Getting started](#getting-started)
+  - [CIC content framework](#.templates)
+    - [Documenting commands](#documenting-a-command)
+    - [Documenting command output](#documenting-command-output)
+    - [Generating documentation](#generating-documentation)
+  - [Resources](#resources)
+  - [Defining support infrastructure](#defining-support-infrastructure)
 
 ## Raising an issue
 There are several types of issue that you can raise depending on what it is you are looking for.
@@ -10,7 +19,7 @@ There are several types of issue that you can raise depending on what it is you 
 
 We've provided issue templates to help you make requests so look out for the issue type that best suits your request.
 
-## Contributing an exercise
+## Submitting an exercise
 Exercises can consist of the following components:
 - **Exercise readme**
 - **Resources** - Additional bits and pieces needed to support the exercise
@@ -44,7 +53,7 @@ The only requirement is that the files in the `exercise_name/.templates` directo
 
 By default, you are given the file `exercise_name/.templates/README.md.erb`, from which the mandatory exercise README.md will be generated.
 
-#### prescribing a command
+#### documenting a command
 
 Let's say that you want to tell your reader to execute the following command `mkdir new_directory`. To do this you would prescribe the command using some special syntax in line with the rest of the exercise content. E.g.
 ```ERB
@@ -57,7 +66,7 @@ In the above, the following is happening:
 0. The  <%= %> tags mean that you want the output of the `command` helper invocation to be written in to the generated file.
 
 
-#### Displaying the output of a command
+#### documenting command output
 There are 3 ways to display the output of a command
 1. Use the `command_output` helper to return the output of the command directly.
 2. Use the `last_command_output` to get hold of the output from the last command you ran using either the `command` or `command_output` helpers
@@ -86,11 +95,11 @@ Files produced by the templates will be put in to the root of the exercise direc
 ### resources
 You will often want to supply resources to support your exercise. Put these files within the resources directory.
 
-### .cic/docker-compose.yml: Test infrastructure
-Some exercises will require some kind of test infrastructure to for participants to run their exercise code against. The `cic up` wraps docker-compose to stand up the infrastructure you prescribe in blah
+### Defining support infrastructure
+Some exercises will require some kind of test infrastructure to for participants to run their exercise code against. The `cic up` wraps docker-compose to stand up the infrastructure you prescribe in ...
 
 
 
   
 
-Revision: f32616a772305aa2d9c8759c2927018e3c36c40e718e4fc1c9ada2024bb72ad6
+Revision: db1f13cbf20f5fa06bf02e8f44ea02b9d813ee706876836e9e5506211003c9aa

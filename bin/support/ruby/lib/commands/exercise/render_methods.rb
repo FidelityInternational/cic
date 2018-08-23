@@ -65,9 +65,10 @@ module Exercise
         if comment.strip == 'instruction:run_in_temp_directory'
           require 'tmpdir'
           Dir.mktmpdir do |path|
-            Dir.chdir(path) do
-              output = erb_template.result(this.send(:binding))
-            end
+            original_dir = path
+            Dir.chdir(path)
+            output = erb_template.result(this.send(:binding))
+            Dir.chdir(original_dir)
           end
         end
       end
