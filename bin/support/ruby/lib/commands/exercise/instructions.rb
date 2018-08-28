@@ -2,26 +2,11 @@ require_relative '../../utils/commandline'
 require_relative 'output'
 require 'fileutils'
 require 'yaml'
-
-require 'page_magic'
-
-HeadlessChrome = PageMagic::Driver.new(:headless_chrome) do |app, _options, _browser_alias_chosen|
-  # Write the code necessary to initialise the driver you have chosen
-  require 'selenium/webdriver'
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless no-sandbox disable-gpu] }
-  )
-
-  Capybara::Selenium::Driver.new app,
-                                 browser: :chrome,
-                                 desired_capabilities: capabilities
-end
-
-PageMagic.drivers.register HeadlessChrome
+require_relative 'headless_browser_driver'
 
 module Exercise
 
-  # module Instructions - Helper methods to be used with in templates
+  # module Instructions - Helper methods to be used within templates
   module Instructions
     include Commandline
     include Commandline::Output
@@ -124,15 +109,14 @@ module Exercise
     #       # code
     #     end
     #   %>
-    # @param [Fixnum] timeout_after: the number of seconds to wait before timing out.
-    # @param [Float] retry_every: the number of seconds to wait before re-evaluating the given block again
+    # @param timeout_after [Fixnum] the number of seconds to wait before timing out.
+    # @param retry_every [Float] the number of seconds to wait before re-evaluating the given block again
     # @raise [TimeoutError] if given block does not return true within the allowed time.
-    def wait_until(opts = {})
-      opts = { timeout_after: 5, retry_every: 0.1 }.merge(opts)
+    def wait_until(timeout_after: 5, retry_every: 0.1 )
       start_time = Time.now
-      until Time.now > start_time + opts[:timeout_after]
+      until Time.now > start_time + timeout_after
         return true if yield == true
-        sleep opts[:retry_every]
+        sleep retry_every
       end
       raise TimeoutError, 'Action took to long'
     end
@@ -143,7 +127,7 @@ module Exercise
     #   <%
     #     write_to_file('path/file.txt', 'content')
     #   %>
-    # @param [String] path: the path to write the file to.
+    # @param [String] path the path to write the file to.
     # @param [Float] content the content to write to file
     # @return [String] the path that the file was written to.
     def write_to_file(path, content)

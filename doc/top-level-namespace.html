@@ -89,32 +89,6 @@
   
 </p>
 
-  
-    <h2>
-      Constant Summary
-      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
-    </h2>
-
-    <dl class="constants">
-      
-        <dt id="HeadlessChrome-constant" class="">HeadlessChrome =
-          
-        </dt>
-        <dd><pre class="code"><span class='const'>PageMagic</span><span class='op'>::</span><span class='const'>Driver</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:headless_chrome</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='id identifier rubyid__options'>_options</span><span class='comma'>,</span> <span class='id identifier rubyid__browser_alias_chosen'>_browser_alias_chosen</span><span class='op'>|</span>
-  <span class='comment'># Write the code necessary to initialise the driver you have chosen
-</span>  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>selenium/webdriver</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_capabilities'>capabilities</span> <span class='op'>=</span> <span class='const'>Selenium</span><span class='op'>::</span><span class='const'>WebDriver</span><span class='op'>::</span><span class='const'>Remote</span><span class='op'>::</span><span class='const'>Capabilities</span><span class='period'>.</span><span class='id identifier rubyid_chrome'>chrome</span><span class='lparen'>(</span>
-    <span class='label'>chromeOptions:</span> <span class='lbrace'>{</span> <span class='label'>args:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>headless</span><span class='words_sep'> </span><span class='tstring_content'>no-sandbox</span><span class='words_sep'> </span><span class='tstring_content'>disable-gpu</span><span class='words_sep'>]</span> <span class='rbrace'>}</span>
-  <span class='rparen'>)</span>
-
-  <span class='const'>Capybara</span><span class='op'>::</span><span class='const'>Selenium</span><span class='op'>::</span><span class='const'>Driver</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_app'>app</span><span class='comma'>,</span>
-                                 <span class='label'>browser:</span> <span class='symbol'>:chrome</span><span class='comma'>,</span>
-                                 <span class='label'>desired_capabilities:</span> <span class='id identifier rubyid_capabilities'>capabilities</span>
-<span class='kw'>end</span></pre></dd>
-      
-    </dl>
-  
-
 
 
 
@@ -126,7 +100,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Aug 28 14:10:21 2018 by
+  Generated on Tue Aug 28 14:16:04 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.4.3).
 </div>
