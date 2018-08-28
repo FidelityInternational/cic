@@ -24,7 +24,7 @@ Exercises can consist of the following components:
 - **Exercise readme**
 - **Resources** - Additional bits and pieces needed to support the exercise
 - **Tests** - Exercises should be accompanied by a test(s) that participants can run to prove to themselves that they have completed the task correctly
-- **Test Infrastructure** - Many topics require an environment for participants to conduct the exercise within. This represent a barrier to participants especially if the environment is a complex one. CIC is built upon the philosphy that a participant should not be required to provide any infrastructure in order to carry out an exercise. CIC uses docker and docker-compose to achieve this.
+- **Test Infrastructure** - Many topics require an environment for participants to conduct the exercise within. This represent a barrier to participants especially if the environment is a complex one. CIC is built upon the philosophy that a participant should not be required to provide any infrastructure in order to carry out an exercise. CIC uses docker and docker-compose to achieve this.
 
 
 <% exercise_name='exercise_name' %>
@@ -42,29 +42,31 @@ templates_directory="#{exercise_name}/#{templates_directory_name}"
 ### <%= templates_directory_name %>
 Technical exercises can be complicated to write. They are full of commands, and example output, which if slightly incorrect can cause massive confusion to the reader. Reading exercises through to ensure the accuracy of these things is time consuming and error prone.
 
-To overcome this problem, the CIC content framework allows you to write and execute templates representing your exercise files. During the processing of your templates, commands can be verified and their output can be inserted in to the documentation that is generated for the participant.
-
-The only requirement is that the files in the `<%=path("#{templates_directory}") %>` directory end with the extension `.erb`. This identifies them as ERB files and that they should be picked up for processing. ERB is a markup format, however you only need to know the following to use CIC's content framework.
+To overcome this problem, the CIC content framework allows you to write and execute templates that can be used to generate your files. During the processing of templates, commands can be verified and their output can be inserted in to the documentation that is generated for the participant.
 
 By default, you are given the file `<%=path("#{templates_directory}/README.md.erb") %>`, from which the mandatory exercise README.md will be generated.
 
+Files files in the `<%=path("#{templates_directory}") %>` directory should end with the extension `.erb`. This identifies them as ERB files and that they should be picked up for processing. ERB is a markup format, the following is what you need to know in order to use CIC's content framework.
+
 #### documenting a command
 <% example_command='mkdir new_directory' %>
-Let's say that you want to tell your reader to execute the following command `<%= example_command %>`. To do this you would prescribe the command using some special syntax in line with the rest of the exercise content. E.g.
+To tell your reader to execute the a command, for example `<%= example_command %>`, specify the command within the template using the following syntax:
 ```ERB
   Please run the following command: <%= %Q[ <\%= command( '#{example_command}') %\>].gsub('\\', '') %>
 ```
 In the above, the following is happening:
-0. The helper method `command` is being invoked to run `<%= example_command %>`. `command` does two things:
-  0. It runs the command for real to see if it executes successfully. If the command does not work, generation will fail. This allows you to find out early when the commands you are telling participants to run don't actually work.
-  0. It returns the command you gave it so that it can be inserted in to the generated file.
-0. The <%= %Q[ <\%= %\>].gsub('\\', '') %> tags mean that you want the output of the `command` helper invocation to be written in to the generated file.
+1. The helper method `command` is being invoked to run `<%= example_command %>`. `command` does two things:
+  a. It runs the command for real to see if it executes successfully. If the command does not work, generation will fail. This allows you to find out early when the commands you are telling participants to run don't actually work.
+  b. It returns the command you gave it so that it can be inserted in to the generated file.
+2. The <%= %Q[ <\%= %\>].gsub('\\', '') %> tags mean that you want the output of the `command` helper invocation to be written in to the generated file.
 
+#### Helpers
+The CIC content framework provides a number of helper functions that can be used to perform useful operations. To find out more about these read the [helpers docs](). These helpers can be used at any point within a template as long as they are used within the `<%= '<\% %\>'.gsub('\\','') %>` or `<%= '<\%= %\>'.gsub('\\','') %>` style syntax described in this readme.
 
 #### documenting command output
 There are 3 ways to display the output of a command
 1. Use the `command_output` helper to return the output of the command directly.
-2. Use the `last_command_output` to get hold of the output from the last command you ran using either the `command` or `command_output` helpers
+2. Use the `last_command_output` to get hold of the output from the last command you ran using the `command` or `command_output` helpers
 3. Memoisation
 When you want to save the output of a command and use it after other uses of the `command` helper you can save the output against a variable and refer to that instead.
 E.g.
@@ -79,7 +81,7 @@ string.gsub('\\','')
 ```
 #### Generating documentation
 <% cd exercise_name %>
-To render the documents set out in the `<%= templates_directory_name %>` directory, navigate to the root of your exercise directory and run `<%= command('exercise generate') %>`. This will should give output like the following:
+To render the templates in the `<%= templates_directory_name %>` directory, navigate to the root of your exercise directory and run `<%= command('exercise generate') %>`.
 ```
 <%= last_command_output %>
 ```
