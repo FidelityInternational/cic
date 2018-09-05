@@ -5,27 +5,34 @@
 
 
 
+## Exercise Learning Objectives
+To introduce:
+- the purpose of Continuous Integration
+- Concourse CI
+
 ## Introduction
-Development teams working on a common codebase are **continuously** making changes to that common code. In order for a team member to know that their changes are compatible, **continuous** checking of the code base should be happening too. I.e. every time some one makes a change, the code base should be tested to ensure it is continuing to work as intended. The idea is that the more frequently changes are integrated, the smaller those changes are likely to be and therefore the lower the risk is that they will break something. This is where the practice of Continuous Integration (CI) comes in.
+Development teams working on a common codebase are **continuously** making changes. In order for a team member to know that their changes are compatible, **continuous** checking of the code base should be happening too. I.e. every time some one makes a change, the code base should be tested to ensure it is continuing to work as intended. The idea is that the more frequently changes are integrated, the smaller those changes are likely to be and therefore the lower the risk is that they will break something. This is where the practice of Continuous Integration (CI) comes in.
 
 > Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.
 - Martin Fowler: [https://martinfowler.com/articles/continuousIntegration.html](https://martinfowler.com/articles/continuousIntegration.html)
 
-Traditionally, large systems are very difficult to change and time consuming to verify. This results in new releases only being made a few times a year. These release are usually high risk, high anxiety, events due to their manual and error prone nature. CI is an automated process, this means, with careful management, that as the code base grows the time taken verify the code base should remain short (ideally just a few minutes). This has the knock on effect that new releases can be prepared and released frequently. Frequent, high quality, releases benefit the business and take the pressure off of the team.
+Traditionally, large systems are very difficult to change and time consuming to verify. This results in new releases only being made a few times a year. Manual releases are usually high risk, high anxiety events. CI is an automated process meaning that it is repeatable. Automated processes are almost always faster than manual ones. With careful management, as the code base grows, the time taken verify a code base should remain short (ideally just a few minutes). This has the knock on effect that new versions of a code base can be verified and released frequently. Frequent, high quality, releases benefit the business and take the pressure off of the team.
 
 ### Continuous Integration Servers
-Continuous integration servers are essentially glorified schedulers. They sit looking at your Version Control System (VCS) and when they see that a change has been introduced they do what ever they have been configured to do. E.g. to compile the new version of the code base and run a set of tests to see if it still works. Different CI servers may have different user interfaces, however they essentially all do the same thing and have a very common feature set. Therefore learn how to use one CI server and you should find that switching to another is a pretty easy process.
-
-## Exercise Learning Objectives
-- Introduction Concourse CI
+Continuous integration servers are essentially glorified schedulers. They sit looking at your Version Control System (VCS) and when they see that a change has been introduced they do what ever they have been configured to do. E.g. compile the new version of a code base and run a set of tests to see if it still works. Different CI servers may have different user interfaces, however they essentially all do the same thing and have a very common feature set. Therefore learn how to use one CI server and you should find that switching to another is a pretty easy process.
 
 ## Exercise
 **Note:** Before going any further do the following:
 - `cd YOUR_CLONE_OF_THIS REPO`
 - `source ./bin/env`
-- `cd exercises/CI/introduction_to_ci`
+- `cd exercises/ci/introduction_to_ci`
 
-In this exercise you will be working using a CI server called Concourse. We've done the hard bit and have provided you with your very own Concourse installation. We've also provided you with a GIT server for your CI server to talk to. To start everything up, run: `cic up` 
+In this exercise you will be working using a CI server called [Concourse](https://concourse-ci.org/). Concourse describes itself as 'an open source thing-doer' and that is exactly what it is! Concourse requires you to to configure it with things called 'pipelines'. A pipeline is the name that Concourse gives to one or more tasks/jobs that have been configured to be run in a prescribed order when a particular event happens. E.g. a change is detected in version control. Concourse has no opinion on what should happen within a pipeline and leaves it entirely up to you to prescribe.
+
+Pipelines can be can be as simple as a one step process or they can be used to model very complex processes. In a later exercise we'll go in to pipelines and their features in more depth.
+
+### Getting started
+In order to play with Concourse, we are going to need a Concourse server and version control repository for it to talk to. Fear not, we've supplied this for you. To start everything up, run: `cic up` 
 
 
 If all is well you should see the following:
@@ -35,9 +42,10 @@ If all is well you should see the following:
 
 ```
 
-Click the login button at the top right of the [concourse home page](http://127.0.0.1:8080) and login with username `test` and password `test`. You'll note that there arn't currently any 'pipelines' configured. A pipeline is the name that Concourse gives to one or more tasks/jobs that have been configured to be run in a prescribed order when a particular event happens. E.g. a change is detected in GIT. Pipelines can be can be as simple as a one step process or they can be used to model very complex processes. In a later exercise we'll go in to pipelines and there features in more depth.
+Click the login button at the top right of the [concourse home page](http://127.0.0.1:8080) and login with username `test` and password `test`. You'll note that there arn't currently any 'pipelines' configured.
 
-We have supplied a very simple pipeline. Let's put it in to concourse.
+### Creating a pipeline
+We have supplied a very simple pipeline for you to configure Concourse with.
 
 Some CI's have extensive UIs through which they can be configured, Concourse is primarly configured via it's commandline interface (CLI) which makes webservice calls to configure the Concourse server. The CLIs for each O/S are available in `./resources` directory. Use the fly binary that is correct for your O/S to complete this exercise.
 
@@ -133,9 +141,10 @@ You'll notice the following:
 - there is now a pipe line called: `ci-intro-pipeline`
 - the pipeline is paused
 
-When pipelines are first pushed, they are not enabled. In order to run the pipeline we need to unpause it. Do this by either clicking the play symbol or by running: `./resources/linux/fly -t local unpause-pipeline -p ci-intro-pipeline`. Unpausing the pipeline should cause Concourse to trigger a build for our new pipeline. Go back to the [detailed view of the pipeline](http://127.0.0.1:8080/teams/main/pipelines/ci-intro-pipeline) after 20 seconds or so, you'll notice that that pipeline goes green. This means that the code has been pulled successfully from GIT and that the singe job, that is in the pipeline, has executed successfully.
+When pipelines are first pushed, they are not enabled. In order to run the pipeline we need to unpause it. Do this by either clicking the play symbol or by running: `./resources/linux/fly -t local unpause-pipeline -p ci-intro-pipeline`. Unpausing the pipeline should cause Concourse to trigger a build for our new pipeline. Go back to the [detailed view of the pipeline](http://127.0.0.1:8080/teams/main/pipelines/ci-intro-pipeline) and after about 20 seconds you'll notice that that pipeline goes green. This means that the code has been pulled successfully from GIT and that the singe job, that is in the pipeline, has executed successfully.
 
 ![Passing Pipeline](./passing_pipeline_screenshot.png)
+
 ### Now it's your turn
 You are part of a team who has been working on a new application, a team member has carefully made a change to the code and is recommending that the change be released straight to production. Nothing could possibly go wrong!... could it?
 
@@ -164,7 +173,7 @@ The checkout is pointed at the GIT server that was brought up for you when you r
 ssh://git@localhost:3333/git-server/repos/application-repo.git
 ```
 Commit and push your team mate's changes to GIT and see what the Concourse makes of it :)
-**Hint** If you don't know how to use git. Investigate (in that order):
+**Hint** If you don't know how to use GIT. Investigate (in the following order):
 - git add
 - git commit
 - git push
@@ -176,4 +185,4 @@ Continuous Integration plays a vital role in ensuring that the software we right
 
 **Note:** Now that you've finished the exercise, remember to run `cic down` to shutdown your test infrastructure.  
 
-Revision: 415c173e2e2d0b43cddf557a20b7c7e7419af5c5b0700d35f940e20a095de8e4
+Revision: 4604e857c762ec06f6d9c3e55dff03ec47d3008dcb23d539e76ad5b2a73f3203

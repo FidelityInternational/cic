@@ -36,7 +36,7 @@ resources:
 
 
 jobs:
-- name: run tests
+- name: run_tests
   plan:
   - do:
     - aggregate:
