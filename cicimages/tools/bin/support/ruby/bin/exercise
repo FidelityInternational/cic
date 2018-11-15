@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require_relative '../lib/commands/exercise/command'
-Exercise::Command.start(ARGV)
