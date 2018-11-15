@@ -18,9 +18,10 @@ fi
 
 root_dir="${CURRENT_PATH}/.."
 cic_dir="${root_dir}/.cic"
-bin_dir="${root_dir}/bin/.ignore"
+bin_dir="${root_dir}/bin/bootstrapped-commands"
 mountpoint="/mnt/bin"
 
+rm -Rf "${bin_dir}"
 mkdir -p "${bin_dir}"
 
 cd "${cic_dir}"
