@@ -86,24 +86,31 @@ Looking at the output in detail:
  - It has detected a play called 'Setup a webserver'.
  
 ```
- 
+ PLAY [Setup a webserver.] ******************************************************
 ```
  - It has collected facts against all hosts in the inventory. We will cover facts later.
  ```
- 
+ TASK [Gathering Facts] *********************************************************
+ok: [web1]
+
 ```
  - Has installed apache2
 ```
- 
+ TASK [install apache2] *********************************************************
+changed: [web1]
+
 ```
  - Has started apache2
 ```
+TASK [Start service apache2, if not running] ***********************************
+changed: [web1]
 
 ```
  - Given us a summary of the number of actions that is has taken.
 
 ```
- 
+ PLAY RECAP *********************************************************************
+web1                       : ok=3    changed=2    unreachable=0    failed=0   
 ```
 
 ### Validating that everything has worked
@@ -126,7 +133,7 @@ This should output the following:
 ============================= test session starts ==============================
 platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
 cachedir: .pytest_cache
-rootdir: /vols/pytest_13670, inifile: pytest.ini
+rootdir: /vols/pytest_4089, inifile: pytest.ini
 plugins: testinfra-1.17.0
 collecting ... collected 3 items                                                              
 
@@ -134,7 +141,7 @@ tests/apache_ansible_test.py::test_apache_installed PASSED               [ 33%]
 tests/apache_ansible_test.py::test_apache_is_enabled_as_service PASSED   [ 66%]
 tests/apache_ansible_test.py::test_apache_installed_is_running PASSED    [100%]
 
-=========================== 3 passed in 0.82 seconds ===========================
+=========================== 3 passed in 0.85 seconds ===========================
 ```
 
 In just a second or so the test has validated that:
@@ -149,4 +156,4 @@ Ansible is a great tool for configuring infrastructure. Baked in to its philosop
 
   
 
-Revision: 4120f72e0f5eb4e88cc4e97dc47ed819
+Revision: 0bca684e6a2573381c816f613cf5e269

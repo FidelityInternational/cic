@@ -26,7 +26,7 @@ Continuous integration servers are essentially glorified schedulers. They sit lo
 **Note:** Before going any further do the following:
 - `cd YOUR_CLONE_OF_THIS REPO`
 - `source ./bin/env`
-- `cd ./exercises/CI/introduction_to_ci`
+- `cd /exercises/CI/introduction_to_ci`
 
 In this exercise you will be working using a CI server called Concourse. We've done the hard bit and have provided you with your very own Concourse installation. We've also provided you with a GIT server for your CI server to talk to. To start everything up, run: `cic up` 
 
@@ -63,35 +63,7 @@ resources:
   + type: git
   + source:
   +   branch: master
-  +   private_key: |
-  +     -----BEGIN RSA PRIVATE KEY-----
-  +     MIIEowIBAAKCAQEAxEm/zZgCBVH1n//fMRTUYQCcY9JXFwnW9ijrz78xcpTR9bi3
-  +     sm3fiRV5S1HFXu2dHkpGimfSBTHdnQi74uppW2tmKRIt3ovP1893L+0JUtDGvRHt
-  +     7ICg0BVxiP5NCKHV4/dIi0WyRme/Xl0CI7O15WyK3eECRYlJXPUfSzJ4LBSEL6oj
-  +     wNGyWHLeNlYLtXYW0o5L8dwPjO8P2U55q27OdCF4UQf+u8Axc/LpVFL8tjCQmS9O
-  +     kR1b+kygVikCOsGSPxTE3KjfeC278F0cToCh5FhBxb5pNcD/IQI9iv/1uDFXHb5r
-  +     bGM43eY1++BAnRa8CrqCZsGgbPtRSogMv6hYywIDAQABAoIBAAou6Ux5PmGYRu3u
-  +     EF4zfnEp3vMuzmXblNNgfBtjB+Wx4tKkqqMPIDG0c35814h9O1F++PnlOPgcBitH
-  +     cLftAVpE0CABWW/aQQYpNT2/RmSNgEH+1CEY6z7gXeuFhemUu8v/4DuZeg49A6iZ
-  +     mqrPf/hPEUVBjyScYrn33Y/BJorizkBr4F7W1FV10tFjJyzvFZgEOn+qgT5yjeO5
-  +     N6P+NAkvEtkPyaAASfqISE9yEFBMpaMAiJ8S/pK+h2HA6uy+gP7xU3+hWixDOIdu
-  +     GJUgZcj4Ue34q1n36fGCRjoMpOxfnL9JjCpGF2YZfy54eX9GN1vTJ8nSyOlMDsko
-  +     zxplIQECgYEA9Ee4KZ322k3fxsIT4lKUOCOvAVVAMaNf8oVbNJVTdkNbjDqznJm7
-  +     xjTXjgNPCaVej50967MDn0kvrIGy6/X6Bk7A+0A+WaPqMcjNHbFjGDFUsc4X5x2r
-  +     4FUd+8nKghGvuK1AnKzhRFNcFIDjHYZ6ooSv2yDZBH2aiWDRmek7GdsCgYEAzbSV
-  +     wemxCusW/GhdOaSrd7+Z1NwU3wubb/reiVy+lHjSRJ93uEkGreUvn2cfrQPMIr4J
-  +     z1IVGGt1Vpg0FAkJ+cJfppo+akzuP0Nfzi7PnXlUqWUVPdRfhHyqc2ypyIFr2Y2I
-  +     Y9gIwaDCWrTXMPYasl4Y1nvtONeDG9l6y76dx9ECgYARBs63V+NU5Ais+eoY5Fig
-  +     cRxJo3+N9i1B4jmxOJdQrvE6nPzX9X85GYXMyD5CFdy5deRTAW9HMvq3s3KdL8/1
-  +     kJey649tABfa0Hw7jZmynf2hRxQzb8YDJOuqGS6cUk9FOA5A3Wv2LzlD1Jf//ted
-  +     bFI1m9yEi5yx5qW1bKRJ8QKBgQCqwiSrExYfjSXIo833ouWgA1Jsq8E7ooQGwgbn
-  +     mjCuSVmrE4GrXhuIUT9mIJHf6s4TbRPxoR7X5aRDHRfmJda9GQiT4Wi8j14a8A/g
-  +     tWUtQOHxuHKYn+omreJE7MhIJH9l2iKFV3l1WsDb0VDtWO6ycIBH1BoJXIV+odtY
-  +     tMR/cQKBgE2L/lEzFR+/d80d39ECGGaCllC2F2cGz/BSWNle5Cp7PVs8y23yG3HG
-  +     iOCmPStUUZ7hi8OVjfsszJqv/z/Tp6kx/hNHXoPFmGcD4G6JyiifwlGG4tLMsO+g
-  +     SJm2WgmccOTu2RVpUkBcPKgxENQWO85QnTF9MlVjjuGRelWcrXwi
-  +     -----END RSA PRIVATE KEY-----
-  +   uri: ssh://git@git-server/git-server/repos/application-repo.git
+  +   uri: http://git-server/repo.git
   
 jobs:
   job my-first-job has been added:
@@ -164,7 +136,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 The checkout is pointed at the GIT server that was brought up for you when you ran the `cic up` command. Running `git remote get-url origin` within the checkout directory shows that the GIT server is indeed on your local machine.
 ```
-ssh://git@localhost:3333/git-server/repos/application-repo.git
+http://git-server/repo.git
 ```
 Commit and push your team mate's changes to GIT and see what the Concourse makes of it :)
 **Hint** If you don't know how to use git. Investigate (in that order):
@@ -180,4 +152,4 @@ Continuous Integration plays a vital role in ensuring that the software we right
 **Note:** Now that you've finished the exercise, remember to run `cic down` to shutdown your test infrastructure.
   
 
-Revision: 266b196c4512e870b0b8961d80ac0258
+Revision: 564743d620d3578bb51d1fe1c77198fb

@@ -26,7 +26,7 @@ mkdir -p "${bin_dir}"
 
 cd "${cic_dir}"
 docker-compose pull
-docker run  -it -v "${bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:0.7.14 "${mountpoint}"
+docker run  -it -v "${bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:latest "${mountpoint}"
 
 bash "${bin_dir}/setup"
 

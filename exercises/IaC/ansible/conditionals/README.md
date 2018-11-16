@@ -62,7 +62,7 @@ ok: [127.0.0.1]
 
 TASK [Runtime requirements check] **********************************************
 fatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Required variable 'installation_dir' not set"}
-	to retry, use: --limit @/vols/ansible_5628/ansible/when.retry
+	to retry, use: --limit @/vols/ansible_1937/ansible/when.retry
 
 PLAY RECAP *********************************************************************
 127.0.0.1                  : ok=1    changed=0    unreachable=0    failed=1   
@@ -361,8 +361,8 @@ TASK [Gathering Facts] *********************************************************
 ok: [127.0.0.1]
 
 TASK [include] *****************************************************************
-included: /vols/ansible_23846/ansible/create_users_and_groups.yml for 127.0.0.1 => (item={'key': 'Admin', 'value': ['user1', 'user2']})
-included: /vols/ansible_23846/ansible/create_users_and_groups.yml for 127.0.0.1 => (item={'key': 'Team', 'value': ['user3', 'user4', 'user5']})
+included: /vols/ansible_26921/ansible/create_users_and_groups.yml for 127.0.0.1 => (item={'key': 'Admin', 'value': ['user1', 'user2']})
+included: /vols/ansible_26921/ansible/create_users_and_groups.yml for 127.0.0.1 => (item={'key': 'Team', 'value': ['user3', 'user4', 'user5']})
 
 TASK [create group] ************************************************************
 ok: [127.0.0.1] => {
@@ -442,17 +442,17 @@ If you've got everything right then the tests we've written for you should pass.
 
 ============================= test session starts ==============================
 platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0
-rootdir: /vols/pytest_5086, inifile:
+rootdir: /vols/pytest_12110, inifile:
 plugins: testinfra-1.17.0
 collecting ... collected 2 items                                                              
 
 tests/test_packages_are_installed.py ..                                  [100%]
 
-=========================== 2 passed in 1.26 seconds ===========================
+=========================== 2 passed in 1.35 seconds ===========================
 ```
 
 Good Luck!!
 
   
 
-Revision: 19e84cc198b8e89a524c2446a974a60e
+Revision: 2175e97595c0f6d479eb79912fb25ce3

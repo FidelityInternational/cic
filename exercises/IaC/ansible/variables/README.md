@@ -346,7 +346,7 @@ You'll know when you got the job done when you are able to run the command `pyte
 ============================= test session starts ==============================
 platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
 cachedir: .pytest_cache
-rootdir: /vols/pytest_8298, inifile: pytest.ini
+rootdir: /vols/pytest_630, inifile: pytest.ini
 plugins: testinfra-1.17.0
 collecting ... collected 4 items                                                              
 
@@ -355,7 +355,7 @@ tests/devservers_test.py::test_dev_app2_server PASSED                    [ 50%]
 tests/devservers_test.py::test_prod_app1_server PASSED                   [ 75%]
 tests/devservers_test.py::test_prod_app2_server PASSED                   [100%]
 
-=========================== 4 passed in 1.52 seconds ===========================
+=========================== 4 passed in 1.66 seconds ===========================
 ```
 
 ## Summary
@@ -370,4 +370,4 @@ Ansible provides a rich feature set that makes it easy to:
 
   
 
-Revision: 5cab38ee3b0b9eca3d8709f24c62cc96
+Revision: 34e883e3c2b015c2bda0282124cd2fbb

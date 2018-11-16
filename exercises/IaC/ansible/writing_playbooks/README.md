@@ -103,7 +103,17 @@ Execute the tests by running: `pytest`
 
 You should see the following. (The stack traces have been omitted):
 ```
+============================= test session starts ==============================
+platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
+cachedir: .pytest_cache
+rootdir: /vols/pytest_10605, inifile: pytest.ini
+plugins: testinfra-1.17.0
+collecting ... collected 4 items                                                              
 
+tests/webserver_test.py::test_apache_installed FAILED                    [ 25%]
+tests/webserver_test.py::test_apache_is_enabled_as_service FAILED        [ 50%]
+tests/webserver_test.py::test_apache_installed_is_running FAILED         [ 75%]
+tests/webserver_test.py::test_website_deployed FAILED                    [100%]
 ```
 The output shows us that two tests attempted to verify:
 - the apache2 package was installed.
@@ -170,16 +180,30 @@ web1                       : ok=3    changed=2    unreachable=0    failed=0
 The terminal output shows us that our 2 tasks ran:
  - installing apache2
 ```
- 
+ TASK [install apache2] *********************************************************
+changed: [web1]
+
 ```
  - starting apache2
 ```
+TASK [Start service apache2, if not running] ***********************************
+changed: [web1]
 
 ```
 
 Run the test again with `pytest` and we see the from the output that the tests verifying apache2 is installed, up and running are passing.
 ```
+============================= test session starts ==============================
+platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
+cachedir: .pytest_cache
+rootdir: /vols/pytest_18487, inifile: pytest.ini
+plugins: testinfra-1.17.0
+collecting ... collected 4 items                                                              
 
+tests/webserver_test.py::test_apache_installed PASSED                    [ 25%]
+tests/webserver_test.py::test_apache_is_enabled_as_service PASSED        [ 50%]
+tests/webserver_test.py::test_apache_installed_is_running PASSED         [ 75%]
+tests/webserver_test.py::test_website_deployed FAILED                    [100%]
 ```
 
 The remaining test is checking that the website content being served is correct. Currently we have not done anything to deploy the team's site. Take a look at [http://localhost:8080](http://localhost:8080) and you'll see that apache is still serving the default page that you get when apache is installed.
@@ -227,7 +251,7 @@ You'll know that you've got it right when the acceptance tests pass :)
 ============================= test session starts ==============================
 platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
 cachedir: .pytest_cache
-rootdir: /vols/pytest_7276, inifile: pytest.ini
+rootdir: /vols/pytest_25665, inifile: pytest.ini
 plugins: testinfra-1.17.0
 collecting ... collected 4 items                                                              
 
@@ -236,7 +260,7 @@ tests/webserver_test.py::test_apache_is_enabled_as_service PASSED        [ 50%]
 tests/webserver_test.py::test_apache_installed_is_running PASSED         [ 75%]
 tests/webserver_test.py::test_website_deployed PASSED                    [100%]
 
-=========================== 4 passed in 0.91 seconds ===========================
+=========================== 4 passed in 0.96 seconds ===========================
 ```
 
 Good luck!
@@ -258,4 +282,4 @@ You have just learned how to:
 
   
 
-Revision: 178b51b963c8a9602d938659184e62ed
+Revision: 8c9c570d08aae7ecfc9318e0941e44d1
