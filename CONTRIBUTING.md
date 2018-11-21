@@ -97,7 +97,7 @@ To render a template in the `.templates` directory, navigate to the root of your
 #############################################################
 Rendering: ./.templates/README.md.erb
 
-[OK] Finished: /vols/ansible_20026/exercise_name/.templates/README.md.erb
+[OK] Finished: /vols/ansible_25947/exercise_name/.templates/README.md.erb
 
 ```
 
@@ -124,4 +124,4 @@ There will be times where you want to wait for something to happen before the `c
 
   
 
-Revision: b3848380608bae7b49a695dae186aaf0
+Revision: 06bcae25b42a988da6d8b49c052172a1
