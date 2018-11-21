@@ -115,13 +115,14 @@ Commit and push your team mate's changes to GIT and see what the Concourse makes
   git config --global user.email "you@example.com" && \
   git config --global push.default matching && \
   git config --local --add core.sshCommand "ssh -i ../git-server/keys/id_rsa" && \
-  git remote set-url origin ssh://git@git-server/git-server/repos/application-repo.git  && \
+  git remote set-url origin http://git-server/repo.git  && \
   git commit -am "update" && \
   git push && \
   cd ../../
   COMMAND
 
   command(git_command)
+
   after_rendering_run("rm -R #{checkout_dir}")
 
   command("#{fly_cli}  -t local destroy-pipeline -p #{intro_pipeline} -n")

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
+set -e
+bin_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# shellcheck source=bin/sh/functions/output.sh
+source "${bin_dir}/sh/functions/output.sh"
 
-# shellcheck source=bin/support/sh/functions/output.sh
-source "${CURRENT_PATH}/support/sh/functions/output.sh"
-# shellcheck source=bin/support/sh/functions/cic_docker.sh
-source "${CURRENT_PATH}/support/sh/functions/cic_docker.sh"
+root_dir="${bin_dir}/.."
+cic_dir="${root_dir}/.cic"
+tools_bin_dir="${root_dir}/bin/cic-commands"
 
 if ! which docker
 then
@@ -18,27 +20,17 @@ then
     exit 1
 fi
 
-say "$(ok "Fetching course images from dockerhub")"
-if ! (docker pull "$(cic_image)"  && docker pull codeclimate/codeclimate && docker pull lvlup/ci_course-ubuntu:0.0.1 && docker pull lvlup/ci_course-centos:0.0.1)
-then
-    say "$(error "Failed to pull course images")"
-    exit 1
-fi
+rm -Rf "${tools_bin_dir}"
+mkdir -p "${tools_bin_dir}"
+cd "${cic_dir}"
 
-if ! (docker network inspect "$(cic_network)" > /dev/null)
-then
-    say "$(ok "Setting up docker network")"
-    docker network create "$(cic_network)"
-fi
+source "${bin_dir}/env"
+COURSEWARE_REPOSITORY="${CIC_IMAGE}" COURSEWARE_VERSION="${CIC_IMAGE_VERSION}" docker-compose pull
 
-if ! (docker container inspect "$(cic_volumes_container)" > /dev/null)
-then
-    say "$(ok "Setting up docker shared volume container")"
-    docker create -v /vols --name "$(cic_volumes_container)" alpine:3.4 /bin/true
-fi
+mountpoint="/mnt/bin"
+docker run  -it -v "${tools_bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:latest "${mountpoint}"
 
-# shellcheck source=bin/env
-source "${CURRENT_PATH}/env"
-say "$(ok "Setup path: ${CURRENT_PATH}")"
+bash "${tools_bin_dir}/setup"
 
 say "$(ok "environment setup complete :)")"
+say "Run: source bin/env to finish up"

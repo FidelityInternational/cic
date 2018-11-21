@@ -21,7 +21,7 @@ Ansible has lots of features that you will learn about in future exercises. The 
 - Before going any further do the following:
   - `cd YOUR_CLONE_OF_THIS REPO`
   - `source ./bin/env`
-  - `cd ./exercises/IaC/ansible/running_ansible`
+  - `cd /exercises/IaC/ansible/running_ansible`
   - Run `cic up` to bring up the infrastructure required for this exercise.
 
 **Note:** Running `cic down` at the end of this exercise will shut down the test infrastructure.
@@ -77,7 +77,9 @@ TASK [Start service apache2, if not running] ***********************************
 changed: [web1]
 
 PLAY RECAP *********************************************************************
-web1                       : ok=3    changed=2    unreachable=0    failed=0
+web1                       : ok=3    changed=2    unreachable=0    failed=0   
+
+[ OK ] FINISHED - start container with: cic start cic_container-xxxxxxxxxxxxxxxx
 ```
 
 Looking at the output in detail:
@@ -108,7 +110,7 @@ changed: [web1]
 
 ```
  PLAY RECAP *********************************************************************
-web1                       : ok=3    changed=2    unreachable=0    failed=0
+web1                       : ok=3    changed=2    unreachable=0    failed=0   
 ```
 
 ### Validating that everything has worked
@@ -131,7 +133,7 @@ This should output the following:
 ============================= test session starts ==============================
 platform linux -- Python 3.7.0, pytest-4.0.0, py-1.7.0, pluggy-0.8.0 -- /root/.pyenv/versions/3.7.0/bin/python3.7
 cachedir: .pytest_cache
-rootdir: /vols/pytest_4685, inifile: pytest.ini
+rootdir: /vols/pytest_4089, inifile: pytest.ini
 plugins: testinfra-1.17.0
 collecting ... collected 3 items                                                              
 
@@ -139,7 +141,7 @@ tests/apache_ansible_test.py::test_apache_installed PASSED               [ 33%]
 tests/apache_ansible_test.py::test_apache_is_enabled_as_service PASSED   [ 66%]
 tests/apache_ansible_test.py::test_apache_installed_is_running PASSED    [100%]
 
-=========================== 3 passed in 0.88 seconds ===========================
+=========================== 3 passed in 0.85 seconds ===========================
 ```
 
 In just a second or so the test has validated that:
@@ -154,4 +156,4 @@ Ansible is a great tool for configuring infrastructure. Baked in to its philosop
 
   
 
-Revision: fd4276f1757d00345e186d19880742ea
+Revision: 0bca684e6a2573381c816f613cf5e269

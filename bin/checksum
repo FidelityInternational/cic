@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+result="$(content requiring_update .)"
+size=$(ruby -e "puts eval(\"${result}\").size" 2>/dev/null)
+if [[ "${size}" != "0" ]]
+then
+    echo "content out of date: ${result}"
+    exit 1
+else
+    echo "content up to date"
+fi

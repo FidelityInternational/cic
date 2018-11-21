@@ -37,7 +37,7 @@ Exercises can consist of the following components:
 - `cd YOUR_CLONE_OF_THIS REPO`
 - `source ./bin/env`
 
-On the command line navigate to the place where the you intend to create your new exercise. For example the, if you want to create a new exercise for ansible. Navigate to correct location within the CIC exercise directory structure and run `exercise create exercise_name`. This command will create a skeleton exercise directory with all the files that you are likely to need.
+On the command line navigate to the place where the you intend to create your new exercise. For example the, if you want to create a new exercise for ansible. Navigate to correct location within the CIC exercise directory structure and run `content create exercise_name`. This command will create a skeleton exercise directory with all the files that you are likely to need.
 ```
 Creating new exercise: exercise_name
 Created: exercise_name/tests
@@ -73,7 +73,7 @@ In the above, the following is happening:
 2. The ` <%= %>` tags mean that you want the output of the `command` helper invocation to be written in to the generated file.
 
 #### Helpers
-The CIC content framework provides a number of helper functions that can be used to perform useful operations. To find out more about these read the [helpers docs](https://htmlpreview.github.io/?https://github.com/lvl-up/ci-cd-training/blob/master/doc/index.html). These helpers can be used at any point within a template as long as they are used within the `<% %>` or `<%= %>` style syntax described in this readme.
+The CIC content framework provides a number of helper functions that can be used to perform useful operations. To find out more about these read the [helpers docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/FidelityInternational/cicimages/master/tools/doc/Exercise/Instructions.html). These helpers can be used at any point within a template as long as they are used within the `<% %>` or `<%= %>` style syntax described in this readme.
 
 #### Documenting command output
 There are 3 ways to display the output of a command
@@ -89,14 +89,15 @@ E.g.
 ```
 #### Generating documentation
 
-To render a template in the `.templates` directory, navigate to the root of your exercise directory pass the template path to the `exercise generate` command. For example running `exercise generate .templates/README.md.erb` will render the example README that was created by `exercise create`.
+To render a template in the `.templates` directory, navigate to the root of your exercise directory pass the template path to the `content generate` command. For example running `content generate .templates/README.md.erb` will render the example README that was created by `content create`.
 
 ```
-#################################################
-# Generating template: .templates/README.md.erb #
-#################################################
-Rendering: .templates/README.md.erb
-[OK] Finished: /vols/ansible_9444/exercise_name/.templates/README.md.erb
+#############################################################
+# Generating template: ./.templates/README.md.erb in path:  #
+#############################################################
+Rendering: ./.templates/README.md.erb
+
+[OK] Finished: /vols/ansible_3385/exercise_name/.templates/README.md.erb
 
 ```
 
@@ -123,4 +124,4 @@ There will be times where you want to wait for something to happen before the `c
 
   
 
-Revision: 33c418a1c7476f9df9a23d58adc9cf25
+Revision: 25c67b39bec55bdaab78d7344aae78fa

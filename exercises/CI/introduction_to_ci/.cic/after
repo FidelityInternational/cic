@@ -27,19 +27,14 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 resources_dir="${script_dir}/../resources"
 cd "${resources_dir}"
 
-chmod 400 git-server/keys/id_rsa
-
 checkout_dir="checkout"
 rm -Rf "${checkout_dir}"
 
-ssh-agent bash -c 'ssh-add git-server/keys/id_rsa; git clone ssh://git@git-server/git-server/repos/application-repo.git checkout'
+git clone http://git-server/repo.git checkout
 
 cd "checkout"
 
-ssh_command="ssh -i ../git-server/keys/id_rsa"
-
-git config --local --add core.sshCommand 'ssh -i ../git-server/keys/id_rsa'
-git remote set-url origin ssh://git@localhost:3333/git-server/repos/application-repo.git
+git remote set-url origin http://git-server/repo.git
 
 cp "${script_dir}/application.py" src/
 
