@@ -1,10 +1,5 @@
 version: '3'
 
-networks:
-  default:
-    external:
-      name: cic
-
 services:
   tools:
     image: ${COURSEWARE_REPOSITORY}:${COURSEWARE_VERSION}
