@@ -10,4 +10,4 @@ cic.iml
 .yardoc/
 .DS_Store
 .vscode/
-bin/bootstrapped-commands/
+bin/cic-commands/

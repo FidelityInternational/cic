@@ -7,7 +7,7 @@ source "${bin_dir}/sh/functions/output.sh"
 
 root_dir="${bin_dir}/.."
 cic_dir="${root_dir}/.cic"
-tools_bin_dir="${root_dir}/bin/bootstrapped-commands"
+tools_bin_dir="${root_dir}/bin/cic-commands"
 
 if ! which docker
 then
