@@ -73,7 +73,7 @@ In the above, the following is happening:
 2. The ` <%= %>` tags mean that you want the output of the `command` helper invocation to be written in to the generated file.
 
 #### Helpers
-The CIC content framework provides a number of helper functions that can be used to perform useful operations. To find out more about these read the [helpers docs](https://htmlpreview.github.io/?https://github.com/lvl-up/ci-cd-training/blob/master/doc/index.html). These helpers can be used at any point within a template as long as they are used within the `<% %>` or `<%= %>` style syntax described in this readme.
+The CIC content framework provides a number of helper functions that can be used to perform useful operations. To find out more about these read the [helpers docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/FidelityInternational/cicimages/master/tools/doc/Exercise/Instructions.html). These helpers can be used at any point within a template as long as they are used within the `<% %>` or `<%= %>` style syntax described in this readme.
 
 #### Documenting command output
 There are 3 ways to display the output of a command
@@ -97,7 +97,7 @@ To render a template in the `.templates` directory, navigate to the root of your
 #############################################################
 Rendering: ./.templates/README.md.erb
 
-[OK] Finished: /vols/ansible_25947/exercise_name/.templates/README.md.erb
+[OK] Finished: /vols/ansible_19044/exercise_name/.templates/README.md.erb
 
 ```
 
@@ -124,4 +124,4 @@ There will be times where you want to wait for something to happen before the `c
 
   
 
-Revision: 06bcae25b42a988da6d8b49c052172a1
+Revision: 7922384c5e817ddd91b317689b5c5d71
