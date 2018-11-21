@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -e
-CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+bin_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # shellcheck source=bin/sh/functions/output.sh
-source "${CURRENT_PATH}/sh/functions/output.sh"
+source "${bin_dir}/sh/functions/output.sh"
+
+root_dir="${bin_dir}/.."
+cic_dir="${root_dir}/.cic"
+tools_bin_dir="${root_dir}/bin/bootstrapped-commands"
 
 if ! which docker
 then
@@ -16,19 +20,17 @@ then
     exit 1
 fi
 
-root_dir="${CURRENT_PATH}/.."
-cic_dir="${root_dir}/.cic"
-bin_dir="${root_dir}/bin/bootstrapped-commands"
-mountpoint="/mnt/bin"
-
-rm -Rf "${bin_dir}"
-mkdir -p "${bin_dir}"
-
+rm -Rf "${tools_bin_dir}"
+mkdir -p "${tools_bin_dir}"
 cd "${cic_dir}"
-docker-compose pull
-docker run  -it -v "${bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:latest "${mountpoint}"
 
-bash "${bin_dir}/setup"
+source "${bin_dir}/env"
+COURSEWARE_REPOSITORY="${CIC_IMAGE}" COURSEWARE_VERSION="${CIC_IMAGE_VERSION}" docker-compose pull
+
+mountpoint="/mnt/bin"
+docker run  -it -v "${tools_bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:latest "${mountpoint}"
+
+bash "${tools_bin_dir}/setup"
 
 say "$(ok "environment setup complete :)")"
 say "Run: source bin/env to finish up"

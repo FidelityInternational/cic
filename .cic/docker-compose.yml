@@ -7,7 +7,7 @@ networks:
 
 services:
   tools:
-    image: cicimages/tools
+    image: ${COURSEWARE_REPOSITORY}:${COURSEWARE_VERSION}
   wrappers-pylint:
     image: cicimages/wrappers-pylint
   wrappers-pytest:
