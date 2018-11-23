@@ -32,6 +32,10 @@ For this material you will need the following:
  - Editor of your choice
  - A browser
 
+The following video explains how to set up a suitable environment on a Windows based computer, and get started with the CIC course.
+
+[<img src="assets/gettingstarted.png">](https://video.fidelity.tv/view/MHKMaMujB8f#/)
+
 ### Setup
 1. create a .netrc file in your home directory with your credentials for github in it.
   Your entry should look something like this:
@@ -47,7 +51,7 @@ For this material you will need the following:
 4. Clone your fork: `git clone https://github.com/<youruser>/<fork>.git cic`
 5. cd in to your checkout: `cd cic`
 6. setup the courseware: `./bin/setup`
-7. source `./bin/env` to add the course commands to your path  
+7. source `./bin/env` to add the course commands to your path
 
 ### Starting a learning track
 To see the Learning tracks that CIC contains run: `cic track list`
@@ -76,7 +80,6 @@ Many hands make light work and your help is needed! View the [Contributing Guide
 - think that a new exercise would be useful
 - want to work on the CIC framework itself
 
-
   
 
-Revision: 99e25509ce4bb3cc5f57262530d841ef
+Revision: e5e9e7047eded02850cd22956e84a637
