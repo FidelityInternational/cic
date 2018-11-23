@@ -28,7 +28,7 @@ source "${bin_dir}/env"
 COURSEWARE_REPOSITORY="${CIC_IMAGE}" COURSEWARE_VERSION="${CIC_IMAGE_VERSION}" docker-compose pull
 
 mountpoint="/mnt/bin"
-docker run  -it -v "${tools_bin_dir}:${mountpoint}" --entrypoint /cic/bin/init cicimages/tools:latest "${mountpoint}"
+docker run  -it -v "${tools_bin_dir}:${mountpoint}" --entrypoint /cic/bin/init ${CIC_IMAGE}:${CIC_IMAGE_VERSION} "${mountpoint}"
 
 bash "${tools_bin_dir}/setup"
 
