@@ -41,12 +41,12 @@ On the command line navigate to the place where the you intend to create your ne
 ```
 Creating new exercise: exercise_name
 Created: exercise_name/tests
-Created: exercise_name/resources
-Created: exercise_name/.cic
-Created: exercise_name/.cic/docker-compose.yml
-Created: exercise_name/.cic/after
 Created: exercise_name/.templates
 Created: exercise_name/.templates/README.md.erb
+Created: exercise_name/resources
+Created: exercise_name/.cic
+Created: exercise_name/.cic/after
+Created: exercise_name/.cic/docker-compose.yml
 [OK] Complete
 
 ```
@@ -97,7 +97,7 @@ To render a template in the `.templates` directory, navigate to the root of your
 #############################################################
 Rendering: ./.templates/README.md.erb
 
-[OK] Finished: /vols/ansible_4251/exercise_name/.templates/README.md.erb
+[OK] Finished: /vols/ansible_3276/exercise_name/.templates/README.md.erb
 
 ```
 
@@ -124,4 +124,4 @@ There will be times where you want to wait for something to happen before the `c
 
   
 
-Revision: 5ade8b0c864d36b5a1a1c1449c5f190e
+Revision: 32da21e3a02af7528caa8556c2dbd120
